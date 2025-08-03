@@ -43,3 +43,34 @@ class InstagramBot:
                 pic_hrefs = [elem.get_attribute('href') for elem in hrefs_in_view if '.com/p/' in elem.get_attribute('href')]
             except Exception:
                 continue
+            
+        for pic_href in pic_hrefs:
+            driver.get(pic_href)
+            time.sleep(2)
+            try:
+                time.sleep(random.randint(1,2))
+                driver.find_element_by_xpath('//span[@aria-label="Like"]')
+                
+            except Exception as e:
+                time.sleep(2)
+                
+                
+username = 'mukhtarrahimi'
+password = 'rahimi111'
+
+
+ig = InstagramBot(username, password)
+ig.login()
+
+hashtag_list = ['programming', 'coding', 'developer']
+
+while True:
+    try:
+        tag = random.choice(hashtag_list)
+        ig.like_photos(tag)
+
+    except Exception:
+        ig.close_browser()
+        time.sleep(2)
+        ig.InstagramBot(username, password)
+        ig.login()
