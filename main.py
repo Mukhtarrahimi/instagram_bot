@@ -9,3 +9,6 @@ class InstagramBot:
         self.password = password
         self.driver = webdriver.Chrome()
     
+    def close_browser(self):
+        self.driver.quit()
+    
