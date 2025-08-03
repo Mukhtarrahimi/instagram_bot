@@ -30,4 +30,16 @@ class InstagramBot:
         driver.get('https://www.instagram.com/mukhtarrahime')
         
         
-        
+    def like_photos(self, hashtag_list):
+        driver = self.driver
+        driver.get('https://www.instagram.com/explore/tags' + hashtag_list + '/')
+        time.sleep(1)
+        pic_hrefs  = []
+        for i in range(1,2):
+            try:
+                driver.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+                time.sleep(2)
+                hrefs_in_view = driver.find_elements_by_tag_name('a')
+                pic_hrefs = [elem.get_attribute('href') for elem in hrefs_in_view if '.com/p/' in elem.get_attribute('href')]
+            except Exception:
+                continue
