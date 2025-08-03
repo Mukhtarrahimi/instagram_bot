@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 import time
 import random
 
+# instagram bot project code...
+
 class InstagramBot:
     def __init__(self, username, password):
         self.username = username
